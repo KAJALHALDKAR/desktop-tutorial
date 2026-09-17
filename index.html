@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Janhal — trusted on-demand home and personal services. Book trained professionals for cleaning, repairs, beauty, care and more." />
+
+  <!-- Demo structured data. In production, generate city/category/service prices, ratings and FAQs server-side. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Janhal",
+    "url": "https://example.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://example.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <title>Janhal — Home Services, Done Right</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement">
+    <div class="container announcement-inner">
+      <span>Trusted local professionals • Transparent prices • Safe doorstep service</span>
+      <button class="announcement-link" id="safetyLink">How safety works</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#home" class="brand" aria-label="Janhal home">
+      <img src="logo.jpeg" alt="Janhal Logo" class="logo">
+    </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#offers">Offers</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#trust">Safety</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="location-pill" id="locationButton" type="button" title="Choose your city">
+          <span class="location-icon">⌖</span>
+          <span id="locationLabel">Jabalpur</span>
+        </button>
+        <a class="button button-dark button-small" href="#services">Book a service</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services">Services</a>
+      <a href="#offers">Offers</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#trust">Safety</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="pulse-dot"></span>
+            Serving homes in <strong id="heroCity">Jabalpur</strong>
+          </div>
+
+          <h1>Reliable help.<br /><em>Right at your doorstep.</em></h1>
+
+          <p class="hero-text">
+            Book trained professionals for cleaning, repairs, beauty, care and everyday home needs —
+            with clear pricing, trusted service and support from booking to completion.
+          </p>
+
+          <div class="mode-switch" role="tablist" aria-label="Service mode">
+            <button class="mode-tab active" data-mode="scheduled" role="tab" aria-selected="true">
+              Scheduled
+              <span>Choose your slot</span>
+            </button>
+            <button class="mode-tab" data-mode="instant" role="tab" aria-selected="false">
+              Instant
+              <span>Get help now</span>
+            </button>
+          </div>
+
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input id="serviceSearch" type="search" autocomplete="off" placeholder="What service do you need?" />
+            <button class="button button-primary" id="searchButton" type="button">Search</button>
+          </div>
+
+          <div class="hero-meta">
+            <span>✓ Firm price before booking</span>
+            <span>✓ Verified professionals</span>
+            <span>✓ Warranty & support</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Janhal service preview">
+          <div class="visual-card visual-main">
+            <div class="visual-top">
+              <span class="status-chip">● Available today</span>
+              <span class="ghost-icon">↗</span>
+            </div>
+
+            <div class="service-scene">
+              <div class="scene-orb orb-a"></div>
+              <div class="scene-orb orb-b"></div>
+              <div class="scene-house">
+                <div class="roof"></div>
+                <div class="house-body">
+                  <div class="window"></div>
+                  <div class="door"></div>
+                </div>
+              </div>
+              <div class="scene-person">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="toolbox"></div>
+              </div>
+            </div>
+
+            <div class="service-preview">
+              <div>
+                <span class="service-kicker">Popular near you</span>
+                <h3>Deep Home Cleaning</h3>
+                <div class="rating">★ 4.9 <span>• 1,240+ ratings</span></div>
+              </div>
+              <strong>From ₹899</strong>
+            </div>
+          </div>
+
+          <div class="floating-card availability-card">
+            <div class="mini-icon">⚡</div>
+            <div>
+              <strong id="availabilityTitle">Fastest slot</strong>
+              <span id="availabilityText">Today • 5:30–6:00 PM</span>
+            </div>
+          </div>
+
+          <div class="floating-card safety-card">
+            <div class="mini-icon">✓</div>
+            <div>
+              <strong>Verified professional</strong>
+              <span>ID & background checks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-strip">
+      <div class="container">
+        <div class="section-heading compact">
+          <div>
+            <span class="section-kicker">Explore services</span>
+            <h2>Everything your home needs.</h2>
+          </div>
+          <span class="live-badge">● Live in selected city</span>
+        </div>
+
+        <div class="category-grid" id="categoryGrid">
+          <article class="category-card searchable-card" data-search="cleaning home deep clean bathroom kitchen sofa carpet">
+            <div class="category-icon icon-clean">✦</div>
+            <div>
+              <h3>Cleaning</h3>
+              <p>Deep clean, kitchen, bathroom & more</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+
+          <article class="category-card searchable-card" data-search="repairs electrician plumber ac appliance carpenter painting">
+            <div class="category-icon icon-repair">⌁</div>
+            <div>
+              <h3>Repairs</h3>
+              <p>Electrician, plumber, AC & appliances</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+
+          <article class="category-card searchable-card" data-search="beauty salon spa massage hair skin nails makeup">
+            <div class="category-icon icon-beauty">◒</div>
+            <div>
+              <h3>Beauty</h3>
+              <p>Salon, spa, hair, skin & makeup at home</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+
+          <article class="category-card searchable-card" data-search="care physiotherapy yoga pet grooming tutoring elder companionship">
+            <div class="category-icon icon-care">♡</div>
+            <div>
+              <h3>Care & lifestyle</h3>
+              <p>Physio, yoga, pets, tutoring & companionship</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+
+          <article class="category-card searchable-card" data-search="pest control sanitisation termite cockroach bed bug mosquito">
+            <div class="category-icon icon-pest">⊙</div>
+            <div>
+              <h3>Pest control</h3>
+              <p>Protection, sanitisation & disinfection</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+
+          <article class="category-card searchable-card" data-search="installation assembly tv water purifier geyser fan furniture curtain">
+            <div class="category-icon icon-install">+</div>
+            <div>
+              <h3>Installation</h3>
+              <p>Mounting, assembly & home setup</p>
+            </div>
+            <span class="category-arrow">→</span>
+          </article>
+        </div>
+
+        <p class="no-results" id="noResults" hidden>No matching service found. Try “cleaning”, “AC”, “beauty” or “plumber”.</p>
+      </div>
+    </section>
+
+    <section class="booking-section" id="how-it-works">
+      <div class="container booking-grid">
+        <div>
+          <span class="section-kicker">Your booking flow</span>
+          <h2>Simple from search to doorstep.</h2>
+          <p class="muted">
+            Janhal is designed around clear prices, honourable availability and a verified professional journey.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <span class="step-number">01</span>
+              <div>
+                <h3>Choose a service</h3>
+                <p>Browse categories, services, ratings, inclusions and starting prices.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">02</span>
+              <div>
+                <h3>Pick a time</h3>
+                <p>Choose a real serviceable slot — or switch to Instant for available on-shift help.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">03</span>
+              <div>
+                <h3>Meet your professional</h3>
+                <p>See their photo, rating, verification and live ETA before they arrive.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">04</span>
+              <div>
+                <h3>Finish with confidence</h3>
+                <p>OTP start/end, invoice, rating, warranty and support keep the job accountable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="live-booking-card">
+          <div class="booking-header">
+            <div>
+              <span class="booking-label">Live booking preview</span>
+              <h3>AC Deep Service</h3>
+            </div>
+            <span class="booking-status">Assigned</span>
+          </div>
+
+          <div class="booking-professional">
+            <div class="avatar">RK</div>
+            <div>
+              <strong>Rahul Kumar</strong>
+              <span>AC specialist • ★ 4.9</span>
+              <span class="verified-line">✓ Verified professional</span>
+            </div>
+          </div>
+
+          <div class="eta-box">
+            <div>
+              <span>Arrival</span>
+              <strong>Today, 5:40 PM</strong>
+            </div>
+            <span class="eta-chip">8 min away</span>
+          </div>
+
+          <div class="route-line">
+            <span class="route-dot"></span>
+            <div class="route-bar"></div>
+            <span class="route-house">⌂</span>
+          </div>
+
+          <div class="booking-footer">
+            <span>Live tracking • OTP protected</span>
+            <button class="text-button" type="button" id="demoBooking">View details →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer-section" id="offers">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Offers & recurring care</span>
+            <h2>Spend less on the things<br />you book again and again.</h2>
+          </div>
+          <a class="text-link" href="#services">Explore services →</a>
+        </div>
+
+        <div class="offer-grid">
+          <article class="offer-card offer-dark">
+            <div>
+              <span class="offer-tag">NEW CUSTOMER</span>
+              <h3>₹150 off</h3>
+              <p>On your first eligible service booking in the selected city.</p>
+            </div>
+            <div class="offer-code">JANHAL150</div>
+          </article>
+
+          <article class="offer-card offer-warm">
+            <div>
+              <span class="offer-tag">MEMBERSHIP</span>
+              <h3>Priority + savings</h3>
+              <p>Member benefits can include discounts, priority dispatch, waived visit fees and extended warranty.</p>
+            </div>
+            <a href="#services" class="button button-dark">See benefits</a>
+          </article>
+
+          <article class="offer-card offer-soft">
+            <div>
+              <span class="offer-tag">RECURRING CLEANING</span>
+              <h3>Make a routine of it.</h3>
+              <p>Set weekly, twice-weekly or daily cleaning/help with a preferred professional and fixed slot.</p>
+            </div>
+            <a href="#services" class="button button-outline">Create a plan</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-section" id="trust">
+      <div class="container">
+        <div class="trust-panel">
+          <div class="trust-copy">
+            <span class="section-kicker light">Trust & safety</span>
+            <h2>Because a stranger is entering your home, trust is part of the product.</h2>
+            <p>
+              Janhal’s product definition puts verification, live tracking, OTP-protected job start/end,
+              SOS, masked calling and insurance into the service journey.
+            </p>
+            <a href="#services" class="button button-light">Book with confidence</a>
+          </div>
+
+          <div class="trust-grid">
+            <div class="trust-item">
+              <span class="trust-symbol">✓</span>
+              <strong>Identity verified</strong>
+              <span>KYC and background checks before first job</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-symbol">◎</span>
+              <strong>Live tracking</strong>
+              <span>Location shared during active job flow</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-symbol">⌘</span>
+              <strong>OTP protection</strong>
+              <span>Start and end the job with secure OTP steps</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-symbol">!</span>
+              <strong>SOS & support</strong>
+              <span>Incident escalation and help when needed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-preview-section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Starting prices</span>
+            <h2>Popular services in <span id="serviceCity">Jabalpur</span>.</h2>
+          </div>
+          <span class="pricing-note">Prices are illustrative demo content</span>
+        </div>
+
+        <div class="service-list">
+          <article class="service-row searchable-card" data-search="bathroom cleaning bathroom deep clean">
+            <div class="service-image image-bathroom"><span>01</span></div>
+            <div class="service-info">
+              <div class="service-title">
+                <h3>Bathroom Cleaning</h3>
+                <span class="rating">★ 4.8</span>
+              </div>
+              <p>Detailed bathroom cleaning with package-based scope.</p>
+              <div class="service-tags">
+                <span>60–90 min</span>
+                <span>Verified professionals</span>
+              </div>
+            </div>
+            <div class="service-price">
+              <span>Starting from</span>
+              <strong>₹299</strong>
+              <button class="button button-dark button-small service-book" type="button">Book</button>
+            </div>
+          </article>
+
+          <article class="service-row searchable-card" data-search="ac repair ac service appliance cooling">
+            <div class="service-image image-ac"><span>02</span></div>
+            <div class="service-info">
+              <div class="service-title">
+                <h3>AC Deep Service</h3>
+                <span class="rating">★ 4.9</span>
+              </div>
+              <p>Professional AC servicing with clear package inclusions.</p>
+              <div class="service-tags">
+                <span>75–90 min</span>
+                <span>Warranty eligible</span>
+              </div>
+            </div>
+            <div class="service-price">
+              <span>Starting from</span>
+              <strong>₹499</strong>
+              <button class="button button-dark button-small service-book" type="button">Book</button>
+            </div>
+          </article>
+
+          <article class="service-row searchable-card" data-search="electrician electrical home repair fan switch">
+            <div class="service-image image-electric"><span>03</span></div>
+            <div class="service-info">
+              <div class="service-title">
+                <h3>Electrician Visit</h3>
+                <span class="rating">★ 4.8</span>
+              </div>
+              <p>Home electrical repair with an upfront visit/inspection fee.</p>
+              <div class="service-tags">
+                <span>30–60 min</span>
+                <span>On-site add-ons require approval</span>
+              </div>
+            </div>
+            <div class="service-price">
+              <span>Visit fee</span>
+              <strong>₹149</strong>
+              <button class="button button-dark button-small service-book" type="button">Book</button>
+            </div>
+          </article>
+
+          <article class="service-row searchable-card" data-search="beauty salon women hair skin makeup spa massage">
+            <div class="service-image image-beauty"><span>04</span></div>
+            <div class="service-info">
+              <div class="service-title">
+                <h3>Salon at Home</h3>
+                <span class="rating">★ 4.9</span>
+              </div>
+              <p>Beauty and grooming services delivered at home by trained professionals.</p>
+              <div class="service-tags">
+                <span>30–120 min</span>
+                <span>Preference matching</span>
+              </div>
+            </div>
+            <div class="service-price">
+              <span>Starting from</span>
+              <strong>₹399</strong>
+              <button class="button button-dark button-small service-book" type="button">Book</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partner-cta">
+      <div class="container">
+        <div class="partner-card">
+          <div>
+            <span class="section-kicker">For professionals</span>
+            <h2>Build a better workday with Janhal.</h2>
+            <p>
+              The platform defines onboarding, KYC, training, certification, skills, shifts, earnings,
+              insurance and a grievance channel for service professionals.
+            </p>
+          </div>
+          <button class="button button-light" type="button" id="partnerButton">Become a partner</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#home" class="brand footer-brand">
+          <span class="brand-mark">J</span>
+          <span>JANHAL</span>
+        </a>
+        <p class="footer-text">On-demand home and personal services for India.</p>
+      </div>
+
+      <div>
+        <span class="footer-heading">Explore</span>
+        <a href="#services">Services</a>
+        <a href="#offers">Offers</a>
+        <a href="#how-it-works">How it works</a>
+      </div>
+
+      <div>
+        <span class="footer-heading">Trust</span>
+        <a href="#trust">Safety centre</a>
+        <a href="#trust">Warranty & support</a>
+        <a href="#home">Service area</a>
+      </div>
+
+      <div>
+        <span class="footer-heading">Get started</span>
+        <a href="#services">Book a service</a>
+        <a href="#home">Choose location</a>
+        <a href="#home">Sign in</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 Janhal. Demo frontend implementation.</span>
+      <span>Frontend prototype • Mock data only</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="locationModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="locationTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+      <span class="section-kicker">Service area</span>
+      <h2 id="locationTitle">Where do you need service?</h2>
+      <p class="muted">Select a city for this frontend demo. Production should resolve locality through GPS or manual selection and apply the service-area lock.</p>
+
+      <div class="city-options">
+        <button class="city-option active" type="button" data-city="Jabalpur">Jabalpur <span>Live</span></button>
+        <button class="city-option" type="button" data-city="Bhopal">Bhopal <span>Demo</span></button>
+        <button class="city-option" type="button" data-city="Indore">Indore <span>Demo</span></button>
+      </div>
+
+      <button class="button button-dark modal-confirm" id="confirmCity" type="button">Continue with city</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
